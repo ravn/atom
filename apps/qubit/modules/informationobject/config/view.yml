@@ -56,3 +56,8 @@ fileListSuccess:
 itemListSuccess:
   stylesheets:
     print-preview: { media: screen, position: last }
+
+renameSuccess:
+  javascripts:
+    description:
+    rename:
