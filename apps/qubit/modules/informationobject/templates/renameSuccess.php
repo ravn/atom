@@ -13,9 +13,6 @@
 <?php end_slot() ?>
 
 <?php slot('content') ?>
-        <div class="alert"><?php echo __('Use this interface to update the description title, slug (permalink), and/or digital object filename.') ?></div>
-
-
 
   <?php echo $form->renderFormTag(url_for(array('module' => 'informationobject', 'action' => 'rename', 'slug' => $resource->slug)), array('id' => 'rename-form')) ?>
 
@@ -23,9 +20,11 @@
 
     <div id="content">
 
-      <fieldset class="collapsible collapsed">
+      <fieldset class="collapsible">
 
         <legend><?php echo __('Rename') ?></legend>
+
+        <p><?php echo __('Use this interface to update the description title, slug (permalink), and/or digital object filename.') ?></p>
 
         <div class="rename-form-field-toggle"><input id="rename_enable_title" type="checkbox" checked="checked" /> <?php echo __('Update title') ?></div>
         <br />
