@@ -17,7 +17,7 @@
       'type': 'GET',
       'cache': false,
       'success': function(results) {
-        callback(false, results['slug']);
+        callback(false, results['slug'], results['adjusted']);
       },
       'error': function() {
         callback(true);
@@ -55,10 +55,13 @@
     function updateSlugPreview() {
       // Only update slug preview if the slug field's enabled
       if ($fieldCheckboxes['slug'].is(':checked')) {
-        fetchSlugPreview($fields['title'].val(), function(err, slug) {
+        fetchSlugPreview($fields['title'].val(), function(err, slug, adjusted) {
           if (err) {
             alert('Error fetching slug preview.');
           } else {
+            if (adjusted) {
+              $('#rename-slug-warning').modal('show');
+            }
             $fields['slug'].val(slug);
           }
         });
