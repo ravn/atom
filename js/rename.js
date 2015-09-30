@@ -53,13 +53,16 @@
     }
 
     function updateSlugPreview() {
-      fetchSlugPreview($fields['title'].val(), function(err, slug) {
-        if (err) {
-          alert('Error fetching slug preview.');
-        } else {
-          $fields['slug'].val(slug);
-        }
-      });
+      // Only update slug preview if the slug field's enabled
+      if ($fieldCheckboxes['slug'].is(':checked')) {
+        fetchSlugPreview($fields['title'].val(), function(err, slug) {
+          if (err) {
+            alert('Error fetching slug preview.');
+          } else {
+            $fields['slug'].val(slug);
+          }
+        });
+      }
     }
 
     // When no AJAX requests are pending, submit form data
