@@ -321,12 +321,15 @@ abstract class BaseContactInformation implements ArrayAccess
     {
       foreach ($table->getColumns() as $column)
       {
-        if ($name == $column->getPhpName())
+
+        // Set local column values, or set foreign key value to NULL
+        if ($name == $column->getPhpName() || !isset($value))
         {
           $this->values[$name] = $value;
         }
 
-        if ("{$name}Id" == $column->getPhpName())
+        // If this is a foreign key column (has Id suffix) then get primary key from related table
+        else if ("{$name}Id" == $column->getPhpName())
         {
           $relatedTable = $column->getTable()->getDatabaseMap()->getTable($column->getRelatedTableName());
 
